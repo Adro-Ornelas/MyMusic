@@ -9,4 +9,26 @@
         android:title="Cerrar sesión"
         android:icon="@drawable/logout_icon"
         app:showAsAction="always"/>
+    <item
+        android:id="@+id/opc_ver"
+        android:title="Ver"
+        />
+    <item
+        android:id="@+id/opc_modificar"
+        android:title="Modificar"
+        />
+    <item
+        android:id="@+id/opc_Delete"
+        android:title="Eliminar"
+        android:icon="@drawable/baseline_delete_24"
+        app:showAsAction="always"
+        />
+    <item
+        android:id="@+id/opc_creadores"
+        android:title="Creadores"
+        />
+    <item
+        android:id="@+id/opc_contactos"
+        android:title="Contactos"
+        />
 </menu>
