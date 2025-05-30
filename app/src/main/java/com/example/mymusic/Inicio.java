@@ -45,7 +45,6 @@ public class Inicio extends AppCompatActivity {
         et_user = findViewById(R.id.user);
         et_password = findViewById(R.id.password);
         btn_login = findViewById(R.id.login);
-
         archivo = this.getSharedPreferences("sesion", Context.MODE_PRIVATE);
 
         if(archivo.contains("id_usuario")){
@@ -88,7 +87,8 @@ public class Inicio extends AppCompatActivity {
                     throw new RuntimeException(e);
                 }
             }
-        }, new Response.ErrorListener() {
+        },
+                new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Log.e("yo", error.toString());
