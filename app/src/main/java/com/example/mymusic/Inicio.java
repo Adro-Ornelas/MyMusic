@@ -62,7 +62,7 @@ public class Inicio extends AppCompatActivity {
     }
 
     private void onClickLogin() {
-        String url = "http://192.168.1.133/Frecuency/ingreso.php?usr=";
+        String url = "http://192.168.100.245/Frecuency/ingreso.php?usr=";
         url += et_user.getText().toString();
         url += "&pass=";
         url += et_password.getText().toString();
