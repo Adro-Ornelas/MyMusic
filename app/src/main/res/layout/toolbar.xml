@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="45dp"
+    android:layout_height="56dp"
     android:background="#7F000000">
 
     <TextView
@@ -11,6 +11,6 @@
         android:textSize="30sp"
         android:textColor="@color/white"
         android:fontFamily="@font/julius_sans_one"
-        android:textAlignment="center" />
+        android:layout_marginStart="20dp"/>
 
 </androidx.appcompat.widget.Toolbar>
