@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="black">#FF000000</color>
+    <color name="hintColor">#D1CFCF</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="login_color">#091958</color>
+    <color name="darkBlue">#000a47</color>
+    <color name="mediumBlue">#132869</color>
+    <color name="blue1">#1c367a</color>
+    <color name="blue">#25458b</color>
+    <color name="background_login">#836E98EC</color>
+    <color name="login_button">#3F93F2</color>
 </resources>
