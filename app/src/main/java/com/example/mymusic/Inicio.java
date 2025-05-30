@@ -92,7 +92,7 @@ public class Inicio extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Log.e("yo", error.toString());
-                        Toast.makeText(Inicio.this, "Error en la base de datos.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Inicio.this, error.getMessage(), Toast.LENGTH_SHORT).show();
                     }
 
                 });

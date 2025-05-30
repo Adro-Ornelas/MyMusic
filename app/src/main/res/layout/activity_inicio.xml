@@ -22,7 +22,7 @@
         />
     <LinearLayout
         android:layout_width="350dp"
-        android:layout_height="300dp"
+        android:layout_height="340dp"
         android:orientation="vertical"
         android:gravity="center"
         android:background="@drawable/login_background"
@@ -36,7 +36,7 @@
         <EditText
             android:id="@+id/user"
             android:layout_width="250dp"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:background="@drawable/rounded_edges"
             android:textSize="15sp"
             android:hint="@string/user_txt"
@@ -49,7 +49,7 @@
         <EditText
             android:id="@+id/password"
             android:layout_width="250dp"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:background="@drawable/rounded_edges"
             android:textSize="15sp"
             android:inputType="textPassword"
