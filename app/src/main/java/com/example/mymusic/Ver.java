@@ -1,11 +1,8 @@
 package com.example.mymusic;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -19,25 +16,24 @@ import androidx.core.view.WindowInsetsCompat;
 
 import java.security.Principal;
 
-public class MainActivity extends AppCompatActivity {
+public class Ver extends AppCompatActivity {
     Toolbar toolbar;
-    SharedPreferences archivo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_ver);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
+        // Asigna id a toolbar y activa
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        archivo = this.getSharedPreferences("sesion", Context.MODE_PRIVATE);
-
     }
+
     // Inflar options menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -50,11 +46,12 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == R.id.opc_principal){
 
-            Toast.makeText(this, "Ya se encuentra aquí.", Toast.LENGTH_SHORT).show();
+            Intent aPrc = new Intent(this, MainActivity.class);
+            startActivity(aPrc);
+
         } else if(item.getItemId() == R.id.opc_ver){
 
-            Intent aVer = new Intent(this, Ver.class);
-            startActivity(aVer);
+            Toast.makeText(this, "Ya se encuentra aquí.", Toast.LENGTH_SHORT).show();
 
         } else if(item.getItemId() == R.id.opc_modificar) {
 
@@ -68,14 +65,6 @@ public class MainActivity extends AppCompatActivity {
 
         } else if(item.getItemId() == R.id.opc_logout) {
 
-            if(archivo.contains("id_usuario")){
-                Intent cerrar = new Intent(this, Inicio.class);
-                SharedPreferences.Editor editor = archivo.edit();
-                editor.remove("id_usuario");
-                editor.apply();
-                startActivity(cerrar);
-                finish();
-            }
 
         } else if(item.getItemId() == R.id.opc_creadores) {
 

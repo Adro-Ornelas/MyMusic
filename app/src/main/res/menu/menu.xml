@@ -18,7 +18,7 @@
         android:title="Modificar"
         />
     <item
-        android:id="@+id/opc_Delete"
+        android:id="@+id/opc_eliminar"
         android:title="Eliminar"
         android:icon="@drawable/baseline_delete_24"
         app:showAsAction="always"
