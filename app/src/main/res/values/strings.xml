@@ -2,6 +2,9 @@
     <string name="app_name">Frequency</string>
     <string name="user_txt">Correo electronico</string>
     <string name="password_txt">Contraseña</string>
+    <string name="name_txt">Nombre</string>
+    <string name="lastName1">Apellido Paterno</string>
+    <string name="lastName2">Apellido Materno</string>
     <string name="login_txt">Iniciar sesión</string>
     <string name="titleTables">Tablas</string>
     <string name="optionSongs">Canción</string>
@@ -9,6 +12,8 @@
     <string name="optionPlaylist">Playlist</string>
     <string name="contextIcon">Icon</string>
     <string name="selectTable">Seleccionar</string>
+    <string name="newAccountText">¿No tienes una cuenta? Regístrate</string>
+    <string name="existAccountText">¿Ya tienes una cuenta? Inicia sesión</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
