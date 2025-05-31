@@ -46,9 +46,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(item.getItemId() == R.id.Principal){
+        if(item.getItemId() == R.id.opc_principal){
             Toast.makeText(this, "Ya se encuentra aquí.", Toast.LENGTH_SHORT).show();
-        }else if(item.getItemId() == R.id.logOut){
+        }else if(item.getItemId() == R.id.opc_logout){
             if(archivo.contains("id_usuario")){
                 Intent cerrar = new Intent(this, Inicio.class);
                 SharedPreferences.Editor editor = archivo.edit();

@@ -2,10 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/Principal"
+        android:id="@+id/opc_principal"
         android:title="Principal"/>
     <item
-        android:id="@+id/logOut"
+        android:id="@+id/opc_logout"
         android:title="Cerrar sesión"
         android:icon="@drawable/logout_icon"
         app:showAsAction="always"/>
