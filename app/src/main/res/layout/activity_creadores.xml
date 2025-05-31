@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/gradient_background"
+    android:background="@color/darkBlue"
     tools:context=".Creadores">
 
     <include
@@ -21,13 +21,13 @@
         android:layout_margin="30dp"
         android:gravity="top"
         android:layout_gravity="top"
-        android:background="@drawable/login_background"
-        >
+        android:background="@drawable/rounded_edges_main"
+        android:padding="10dp">
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/logout_icon"
+            android:layout_height="100dp"
+            android:src="@drawable/frequency_icon_png"
             />
         <TextView
             android:layout_width="wrap_content"
@@ -35,16 +35,16 @@
             android:background="@drawable/rounded_edges"
             android:layout_gravity="center"
             android:gravity="center"
-            android:textSize="40sp"
+            android:textSize="35sp"
             android:layout_margin="20dp"
             android:textColor="@color/white"
             android:text="Adro Yael Ornelas Ornelas"
-            />
+            android:padding="5dp"/>
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/logout_icon"
+            android:layout_height="100dp"
+            android:src="@drawable/frequency_icon_png"
             />
         <TextView
             android:layout_width="wrap_content"
@@ -52,10 +52,11 @@
             android:gravity="center"
             android:background="@drawable/rounded_edges"
             android:layout_gravity="center"
-            android:textSize="40sp"
+            android:textSize="35sp"
             android:layout_margin="20dp"
             android:textColor="@color/white"
             android:text="Adrian Kosey Angeles Ramos"
+            android:padding="5dp"
 
             />
 

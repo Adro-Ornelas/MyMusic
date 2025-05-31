@@ -1,8 +1,12 @@
 <resources>
-    <string name="app_name">Frecuency</string>
+    <string name="app_name">Frequency</string>
     <string name="user_txt">Correo electronico</string>
     <string name="password_txt">Contraseña</string>
     <string name="login_txt">Iniciar sesión</string>
+    <string name="titleTables">Tablas</string>
+    <string name="optionSongs">Canción</string>
+    <string name="optionAlbum">Albums</string>
+    <string name="optionPlaylist">Playlist</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>

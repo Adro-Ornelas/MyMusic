@@ -57,6 +57,9 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(cerrar);
                 finish();
             }
+        } else if (item.getItemId() == R.id.opc_creadores) {
+            Intent creadores = new Intent(this, Creadores.class);
+            startActivity(creadores);
         }
         return super.onOptionsItemSelected(item);
     }
