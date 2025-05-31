@@ -15,19 +15,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@drawable/rounded_edges_white"
+        android:background="@drawable/rounded_edges_main"
         android:layout_margin="20dp"
         android:padding="10dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tablas"
+            android:text="@string/titleTables"
             android:textColor="@color/white"
-            android:textSize="30sp"
+            android:textSize="25sp"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginTop="10dp"
-            android:fontFamily="@font/julius_sans_one"/>
+            android:fontFamily="@font/roboto_condensed_regular"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -35,27 +35,30 @@
             <Button
                 android:layout_width="100dp"
                 android:layout_height="50dp"
-                android:text="Cancion"
+                android:text="@string/optionSongs"
                 android:textColor="@color/white"
                 android:gravity="center"
                 android:layout_margin="10dp"
-                android:backgroundTint="@color/login_button"/>
+                android:backgroundTint="@color/login_button"
+                android:fontFamily="@font/roboto_condensed_semibold"/>
             <Button
                 android:layout_width="100dp"
                 android:layout_height="50dp"
-                android:text="Albums"
+                android:text="@string/optionAlbum"
                 android:textColor="@color/white"
                 android:gravity="center"
                 android:layout_margin="10dp"
-                android:backgroundTint="@color/login_button"/>
+                android:backgroundTint="@color/login_button"
+                android:fontFamily="@font/roboto_condensed_semibold"/>
             <Button
                 android:layout_width="100dp"
                 android:layout_height="50dp"
-                android:text="Playlist"
+                android:text="@string/optionPlaylist"
                 android:textColor="@color/white"
                 android:gravity="center"
                 android:layout_margin="10dp"
-                android:backgroundTint="@color/login_button"/>
+                android:backgroundTint="@color/login_button"
+                android:fontFamily="@font/roboto_condensed_semibold"/>
         </LinearLayout>
     </LinearLayout>
 

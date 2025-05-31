@@ -9,5 +9,6 @@
     <color name="blue1">#1c367a</color>
     <color name="blue">#25458b</color>
     <color name="background_login">#836E98EC</color>
-    <color name="login_button">#3F93F2</color>
+    <color name="login_button">#2167B6</color>
+    <color name="backgroundBlue">#327ED5</color>
 </resources>

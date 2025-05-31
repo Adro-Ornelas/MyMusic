@@ -12,7 +12,7 @@
         android:topRightRadius="25dp"/>
     <gradient
         android:startColor="@color/background_login"
-        android:endColor="@color/login_button"
+        android:endColor="@color/backgroundBlue"
         android:angle="90" />
     
 </shape>
