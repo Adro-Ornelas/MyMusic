@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/darkBlue"
+    android:background="@drawable/gradient_background"
     tools:context=".Creadores">
 
     <include
@@ -19,7 +19,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_margin="30dp"
-        android:gravity="top"
+        android:gravity="center"
         android:layout_gravity="top"
         android:background="@drawable/rounded_edges_main"
         android:padding="10dp">
@@ -39,7 +39,7 @@
             android:layout_margin="20dp"
             android:textColor="@color/white"
             android:text="Adro Yael Ornelas Ornelas"
-            android:padding="5dp"/>
+            android:padding="15dp"/>
 
         <ImageView
             android:layout_width="match_parent"
@@ -55,8 +55,8 @@
             android:textSize="35sp"
             android:layout_margin="20dp"
             android:textColor="@color/white"
-            android:text="Adrian Kosey Angeles Ramos"
-            android:padding="5dp"
+            android:text="Adrián Kosey Angeles Ramos"
+            android:padding="15dp"
 
             />
 
