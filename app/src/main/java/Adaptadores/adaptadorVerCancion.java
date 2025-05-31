@@ -16,6 +16,7 @@ import Global.Info;
 
 public class adaptadorVerCancion extends RecyclerView.Adapter<adaptadorVerCancion.MiniActivity> {
     public Context context;
+    
     @NonNull
     @Override
     public adaptadorVerCancion.MiniActivity onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
