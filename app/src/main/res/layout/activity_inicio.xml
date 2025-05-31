@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
@@ -18,7 +17,8 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:src="@drawable/frequency_sin_fondo"
-            android:layout_marginEnd="10dp"/>
+            android:layout_marginEnd="10dp"
+            android:contentDescription="@string/contextIcon"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -27,8 +27,7 @@
             android:textColor="@color/white"
             android:textAlignment="center"
             android:layout_marginBottom="10dp"
-            android:fontFamily="@font/julius_sans_one"
-            />
+            android:fontFamily="@font/julius_sans_one" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="350dp"
@@ -42,7 +41,8 @@
             android:layout_height="100dp"
             android:src="@drawable/baseline_account_circle_24"
             android:layout_marginBottom="10dp"
-            android:alpha="0.7"/>
+            android:alpha="0.7"
+            android:contentDescription="@string/contextIcon"/>
         <EditText
             android:id="@+id/user"
             android:layout_width="250dp"
@@ -55,7 +55,8 @@
             android:paddingStart="15dp"
             android:paddingEnd="15dp"
             android:layout_marginBottom="10dp"
-            />
+            android:autofillHints="emailAddress"
+            android:inputType="textEmailAddress"/>
         <EditText
             android:id="@+id/password"
             android:layout_width="250dp"
@@ -69,7 +70,7 @@
             android:paddingStart="15dp"
             android:paddingEnd="15dp"
             android:layout_marginBottom="10dp"
-            />
+            android:autofillHints="password" />
         <Button
             android:id="@+id/login"
             android:layout_width="250dp"
