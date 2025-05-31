@@ -37,18 +37,36 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    // Inflar options menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu, menu);
+        getMenuInflater().inflate(R.menu.menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
+    // Opciones del menu (navega entre activities o logout)
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == R.id.opc_principal){
+
             Toast.makeText(this, "Ya se encuentra aquí.", Toast.LENGTH_SHORT).show();
-        }else if(item.getItemId() == R.id.opc_logout){
+        } else if(item.getItemId() == R.id.opc_ver){
+
+            Intent aVer = new Intent(this, Ver.class);
+            startActivity(aVer);
+
+        } else if(item.getItemId() == R.id.opc_modificar) {
+
+            Intent aMod = new Intent(this, Modificar.class);
+            startActivity(aMod);
+
+        } else if(item.getItemId() == R.id.opc_eliminar) {
+
+            Intent aElim = new Intent(this, Eliminar.class);
+            startActivity(aElim);
+
+        } else if(item.getItemId() == R.id.opc_logout) {
+
             if(archivo.contains("id_usuario")){
                 Intent cerrar = new Intent(this, Inicio.class);
                 SharedPreferences.Editor editor = archivo.edit();
@@ -57,6 +75,17 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(cerrar);
                 finish();
             }
+
+        } else if(item.getItemId() == R.id.opc_creadores) {
+
+            Intent aCrea = new Intent(this, Creadores.class);
+            startActivity(aCrea);
+
+        } else if(item.getItemId() == R.id.opc_contactos) {
+
+            Intent aCont = new Intent(this, Contactos.class);
+            startActivity(aCont);
+
         }
         return super.onOptionsItemSelected(item);
     }

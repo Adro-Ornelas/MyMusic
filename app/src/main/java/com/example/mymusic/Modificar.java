@@ -1,6 +1,8 @@
 package com.example.mymusic;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,6 +20,7 @@ import java.security.Principal;
 
 public class Modificar extends AppCompatActivity {
     Toolbar toolbar;
+    SharedPreferences archivo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +35,7 @@ public class Modificar extends AppCompatActivity {
         // Asigna id a toolbar y activa
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        archivo = this.getSharedPreferences("sesion", Context.MODE_PRIVATE);
     }
 
     // Inflar options menu
@@ -64,8 +68,14 @@ public class Modificar extends AppCompatActivity {
             startActivity(aElim);
 
         } else if(item.getItemId() == R.id.opc_logout) {
-
-
+            if(archivo.contains("id_usuario")){
+                Intent cerrar = new Intent(this, Inicio.class);
+                SharedPreferences.Editor editor = archivo.edit();
+                editor.remove("id_usuario");
+                editor.apply();
+                startActivity(cerrar);
+                finish();
+            }
         } else if(item.getItemId() == R.id.opc_creadores) {
 
             Intent aCrea = new Intent(this, Creadores.class);
