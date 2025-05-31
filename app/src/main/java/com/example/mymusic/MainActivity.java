@@ -5,8 +5,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -16,10 +16,24 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+
+import Adaptadores.adaptadorTablaVista;
+import Global.Info;
+import POJO.nombreTabla;
 
 public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
     SharedPreferences archivo;
+    RecyclerView recyclerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +48,39 @@ public class MainActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         archivo = this.getSharedPreferences("sesion", Context.MODE_PRIVATE);
+        // RecyclerView Para mostrar tablas
+        recyclerView = findViewById(R.id.recyclerview);
+        nombrarTablas();
+    }
+
+    private void nombrarTablas() {
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url = "http://192.168.1.133/Frecuency/nombreTablas.php";
+
+        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,
+                response -> {
+                    for (int i = 0; i < response.length(); i++) {
+                        try {
+                            String nombre = response.getString(i);
+                            nombreTabla titulo = new nombreTabla();
+                            titulo.setNombre(nombre);
+                            Info.nombreTablas.add(titulo);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    adaptadorTablaVista adapter = new adaptadorTablaVista();
+                    adapter.context = this;
+                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+                    recyclerView.setAdapter(adapter);
+                    recyclerView.setLayoutManager(linearLayoutManager);
+                },
+                error -> {
+                    Toast.makeText(this, "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+        );
+
+        queue.add(request);
 
     }
 
@@ -89,5 +136,4 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
 }
