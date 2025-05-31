@@ -37,7 +37,9 @@ public class adaptadorTablaVista extends RecyclerView.Adapter<adaptadorTablaVist
         holder.seleccionar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Al seleccionar una tabla ir a su activity
                 Toast.makeText(context, "Seleccionaste: " + Info.nombreTablas.get(pos), Toast.LENGTH_SHORT).show();
+
             }
         });
     }

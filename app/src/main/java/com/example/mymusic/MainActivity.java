@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
                 response -> {
                     for (int i = 0; i < response.length(); i++) {
                         try {
+                            // Llena el arrayList nombeTablas de cada nombew de tabla
                             String nombre = response.getString(i);
                             nombreTabla titulo = new nombreTabla();
                             titulo.setNombre(nombre);
@@ -100,9 +101,12 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Ya se encuentra aquí.", Toast.LENGTH_SHORT).show();
         } else if(item.getItemId() == R.id.opc_ver){
 
+            /*
             Intent aVer = new Intent(this, Ver.class);
-            startActivity(aVer);
+            startActivity(aVer);*/
 
+            Intent aVer = new Intent(this, VerCancion.class);
+            startActivity(aVer);
         } else if(item.getItemId() == R.id.opc_modificar) {
 
             Intent aMod = new Intent(this, Modificar.class);
@@ -115,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
 
         } else if(item.getItemId() == R.id.opc_logout) {
 
+            // Si el usuario existe, lo borra de shared preferences y regres a a inicio
             if(archivo.contains("id_usuario")){
                 Intent cerrar = new Intent(this, Inicio.class);
                 SharedPreferences.Editor editor = archivo.edit();
