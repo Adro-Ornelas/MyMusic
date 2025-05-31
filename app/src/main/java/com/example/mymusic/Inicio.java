@@ -29,6 +29,7 @@ import org.json.JSONObject;
 
 public class Inicio extends AppCompatActivity {
     EditText et_user, et_password;
+    TextView newAccount;
     Button btn_login;
     SharedPreferences archivo;
     @Override
@@ -45,6 +46,7 @@ public class Inicio extends AppCompatActivity {
         et_user = findViewById(R.id.user);
         et_password = findViewById(R.id.password);
         btn_login = findViewById(R.id.login);
+        newAccount = findViewById(R.id.registrar);
         archivo = this.getSharedPreferences("sesion", Context.MODE_PRIVATE);
 
         if(archivo.contains("id_usuario")){
@@ -52,6 +54,14 @@ public class Inicio extends AppCompatActivity {
             startActivity(ini);
             finish();
         }
+
+        newAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent nuevo = new Intent(Inicio.this, RegistrarUsuario.class);
+                startActivity(nuevo);
+            }
+        });
 
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
