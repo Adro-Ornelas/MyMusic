@@ -62,7 +62,7 @@ public class Inicio extends AppCompatActivity {
     }
 
     private void onClickLogin() {
-        String url = "http://192.168.1.133/Frecuency/ingreso.php?usr=";
+        String url = "https://7064-2806-2f0-56c0-fe66-f42e-6d86-b37a-d551.ngrok-free.app/Frecuency/ingreso.php?usr=";
         url += et_user.getText().toString();
         url += "&pass=";
         url += et_password.getText().toString();
@@ -92,7 +92,7 @@ public class Inicio extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Log.e("yo", error.toString());
-                        Toast.makeText(Inicio.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Inicio.this, "error.getMessage().toString()", Toast.LENGTH_SHORT).show();
                     }
 
                 });

@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void nombrarTablas() {
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "http://192.168.1.133/Frecuency/nombreTablas.php";
+        String url = "https://7064-2806-2f0-56c0-fe66-f42e-6d86-b37a-d551.ngrok-free.app/Frecuency/nombreTablas.php";
 
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,
                 response -> {
