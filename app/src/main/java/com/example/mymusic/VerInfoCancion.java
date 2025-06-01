@@ -21,12 +21,10 @@ public class VerInfoCancion extends AppCompatActivity {
     ImageView imagenCancion, play_pause, next, before;
     TextView nombreCancion, nombreArtista, tiempoAct, tiempoTotal;
     SeekBar seekBar;
-    private Handler handler;
-    private Runnable actualizador;
-    private boolean reproduciendo = true;
-    private long inicio;
-    private long tiempoPausado = 0;
-    private long duracionTotal;
+    private MediaPlayer mediaPlayer;
+    private boolean isPlaying = false;
+    private Handler handler = new Handler();
+    private Runnable actualizadorSeekBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,103 +49,90 @@ public class VerInfoCancion extends AppCompatActivity {
         colocarDatosArtista();
         reproducirMusica();
 
+        play_pause.setOnClickListener(v -> reproducirMusica());
+
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if (fromUser) {
+                if (fromUser && mediaPlayer != null) {
+                    mediaPlayer.seekTo(progress);
                     tiempoAct.setText(formatearTiempo(progress));
                 }
             }
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-                // Pausar mientras se arrastra
-                reproduciendo = false;
+                handler.removeCallbacks(actualizadorSeekBar);
             }
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                // Cuando se suelta, actualizar tiempos
-                tiempoPausado = seekBar.getProgress();
-                inicio = System.currentTimeMillis();
-                reproduciendo = true;
-                handler.post(actualizador);
+                if (mediaPlayer != null && isPlaying) {
+                    handler.post(actualizadorSeekBar);
+                }
             }
         });
     }
     private void reproducirMusica() {
-        String urlCancion = "https://b724-2806-2f0-56c0-fe66-f42e-6d86-b37a-d551.ngrok-free.app/Frecuency/" + getIntent().getStringExtra("cancion");
-        //Toast.makeText(this, "Url:"+urlCancion, Toast.LENGTH_LONG).show();
-        MediaPlayer mediaPlayer = new MediaPlayer();
-        try {
-            mediaPlayer.setDataSource(urlCancion);
-            mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                @Override
-                public void onPrepared(MediaPlayer mp) {
+        if (mediaPlayer == null) {
+            String urlCancion = "https://b724-2806-2f0-56c0-fe66-f42e-6d86-b37a-d551.ngrok-free.app/Frecuency/" + getIntent().getStringExtra("cancion");
+            mediaPlayer = new MediaPlayer();
+            try {
+                mediaPlayer.setDataSource(urlCancion);
+                mediaPlayer.setOnPreparedListener(mp -> {
                     mp.start();
-                }
-            });
-            mediaPlayer.prepareAsync();
-        }catch (IOException e){
-            e.printStackTrace();
+                    isPlaying = true;
+                    play_pause.setImageResource(android.R.drawable.ic_media_pause);
+                    configurarSeekBar();
+                });
+                mediaPlayer.prepareAsync();
+                mediaPlayer.setOnCompletionListener(mp -> {
+                    isPlaying = false;
+                    play_pause.setImageResource(android.R.drawable.ic_media_play);
+                    seekBar.setProgress(seekBar.getMax());
+                    handler.removeCallbacks(actualizadorSeekBar);
+                });
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            if (isPlaying) {
+                mediaPlayer.pause();
+                isPlaying = false;
+                play_pause.setImageResource(android.R.drawable.ic_media_play);
+                handler.removeCallbacks(actualizadorSeekBar);
+            } else {
+                mediaPlayer.start();
+                isPlaying = true;
+                play_pause.setImageResource(android.R.drawable.ic_media_pause);
+                handler.post(actualizadorSeekBar);
+            }
         }
     }
+
+    private void configurarSeekBar() {
+        seekBar.setMax(mediaPlayer.getDuration());
+
+        actualizadorSeekBar = new Runnable() {
+            @Override
+            public void run() {
+                if (mediaPlayer != null && isPlaying) {
+                    int posicion = mediaPlayer.getCurrentPosition();
+                    seekBar.setProgress(posicion);
+                    tiempoAct.setText(formatearTiempo(posicion));
+                    tiempoTotal.setText(formatearTiempo(mediaPlayer.getDuration()));
+                    handler.postDelayed(this, 500); // actualiza cada medio segundo
+                }
+            }
+        };
+        handler.post(actualizadorSeekBar);
+    }
+
+
     private void colocarDatosArtista() {
         nombreCancion.setText(getIntent().getStringExtra("titulo"));
         nombreArtista.setText(getIntent().getStringExtra("artista"));
         tiempoTotal.setText(getIntent().getStringExtra("tiempo"));
-
-        duracionTotal = tiempoStringAMillis(tiempoTotal.getText().toString());
-        seekBar.setMax((int) duracionTotal);
-
-        inicio = System.currentTimeMillis();
-        handler = new Handler();
-
-        actualizador = new Runnable() {
-            @Override
-            public void run() {
-                if (reproduciendo) {
-                    long ahora = System.currentTimeMillis();
-                    long transcurrido = (ahora - inicio) + tiempoPausado;
-
-                    if (transcurrido <= duracionTotal) {
-                        seekBar.setProgress((int) transcurrido);
-                        tiempoAct.setText(formatearTiempo(transcurrido));
-                        handler.postDelayed(this, 1000);
-                    } else {
-                        seekBar.setProgress((int) duracionTotal);
-                        tiempoAct.setText(formatearTiempo(duracionTotal));
-                        reproduciendo = false;
-                    }
-                }
-            }
-        };
-
-        handler.post(actualizador);
-
-        // Botón play/pause
-        play_pause.setOnClickListener(v -> {
-            if (reproduciendo) {
-                // Pausar
-                reproduciendo = false;
-                tiempoPausado += System.currentTimeMillis() - inicio;
-                play_pause.setImageResource(android.R.drawable.ic_media_play); // Cambia el ícono
-            } else {
-                // Reanudar
-                inicio = System.currentTimeMillis();
-                reproduciendo = true;
-                handler.post(actualizador);
-                play_pause.setImageResource(android.R.drawable.ic_media_pause);
-            }
-        });
-    }
-
-    public long tiempoStringAMillis(String tiempo) {
-        String[] partes = tiempo.split(":");
-        int horas = Integer.parseInt(partes[0]);
-        int minutos = Integer.parseInt(partes[1]);
-        int segundos = Integer.parseInt(partes[2]);
-        return (horas * 3600 + minutos * 60 + segundos) * 1000L;
     }
     private String formatearTiempo(long millis) {
         int segundos = (int) (millis / 1000) % 60;
@@ -160,5 +145,16 @@ public class VerInfoCancion extends AppCompatActivity {
             return String.format("%02d:%02d", minutos, segundos);
         }
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mediaPlayer != null) {
+            handler.removeCallbacks(actualizadorSeekBar);
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
+    }
+
 
 }
