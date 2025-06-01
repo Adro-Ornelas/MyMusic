@@ -83,12 +83,13 @@ public class RegistrarUsuario extends AppCompatActivity {
         JsonObjectRequest pet = new JsonObjectRequest(Request.Method.GET, url, null,
                 response -> {
                     try {
-                        if (response.getInt("usr") == 1) {
+                        int res = response.getInt("usr");
+                        if (res == 1) {
                             Intent in = new Intent(RegistrarUsuario.this, Inicio.class);
                             Toast.makeText(RegistrarUsuario.this, "Registrado!", Toast.LENGTH_SHORT).show();
                             startActivity(in);
                             finish();
-                        } else if(response.getInt("usr") == -1){
+                        } else if(res == -1){
                             email.setText("");
                             pass.setText("");
                             Toast.makeText(RegistrarUsuario.this, "El correo ya está registrado", Toast.LENGTH_SHORT).show();
