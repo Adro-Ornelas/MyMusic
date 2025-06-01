@@ -59,6 +59,7 @@ public class VerCancion extends AppCompatActivity {
 
         // RecyclerView Para mostrar tablas
         recyclerView = findViewById(R.id.rv_VerCancion);
+        archivo = this.getSharedPreferences("sesion", Context.MODE_PRIVATE);
 
         nombrarCanciones();     // Llena el arrayList de la información de cada cancion;
 

@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
                     // Establece ViewHolder del recycler view
                     adaptadorTablaVista adapter = new adaptadorTablaVista();
                     adapter.context = this;
-                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
                     recyclerView.setAdapter(adapter);
                     recyclerView.setLayoutManager(linearLayoutManager);
                 },

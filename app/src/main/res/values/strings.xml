@@ -6,6 +6,7 @@
     <string name="lastName1">Apellido Paterno</string>
     <string name="lastName2">Apellido Materno</string>
     <string name="login_txt">Iniciar sesión</string>
+    <string name="register_txt">Registrarse</string>
     <string name="titleTables">Tablas</string>
     <string name="optionSongs">Canción</string>
     <string name="optionAlbum">Albums</string>
