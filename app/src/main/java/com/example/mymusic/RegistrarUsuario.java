@@ -63,7 +63,8 @@ public class RegistrarUsuario extends AppCompatActivity {
     }
 
     private void registrarUsuario() {
-        String baseUrl = "https://b724-2806-2f0-56c0-fe66-f42e-6d86-b37a-d551.ngrok-free.app/Frecuency/registrar.php";
+        String url1 = getResources().getString(R.string.base_url);
+        String baseUrl = url1 + "registrar.php";
 
         // Obtener datos
         String nombreVal = nombre.getText().toString().trim();

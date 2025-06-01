@@ -72,7 +72,8 @@ public class Inicio extends AppCompatActivity {
     }
 
     private void onClickLogin() {
-        String url = "https://b724-2806-2f0-56c0-fe66-f42e-6d86-b37a-d551.ngrok-free.app/Frecuency/ingreso.php?usr=";
+        String baseUrl = getResources().getString(R.string.base_url);
+        String url = baseUrl + "ingreso.php?usr=";
         url += et_user.getText().toString();
         url += "&pass=";
         url += et_password.getText().toString();

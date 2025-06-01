@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,28 +35,30 @@ public class adaptadorTablaVista extends RecyclerView.Adapter<adaptadorTablaVist
     @Override
     public void onBindViewHolder(@NonNull adaptadorTablaVista.MiniActivity holder, int position) {
         final int pos = position;
-        holder.titulo.setText(Info.nombreTablas.get(pos).getNombre());
-        holder.seleccionar.setOnClickListener(new View.OnClickListener() {
+        holder.titulo.setText(Info.listaPlaylists.get(pos).getNombrePlaylist());
+        holder.fecha.setText(Info.listaPlaylists.get(pos).getFechaCreacion());
+        holder.seleccionarPlaylist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Al seleccionar una tabla ir a su activity
-                Toast.makeText(context, "Seleccionaste: " + Info.nombreTablas.get(pos), Toast.LENGTH_SHORT).show();
-
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return Info.nombreTablas.size();
+        return Info.listaPlaylists.size();
     }
     public class MiniActivity extends RecyclerView.ViewHolder{
-        TextView titulo;
-        Button seleccionar;
+        TextView titulo, fecha;
+        ImageView portada;
+        LinearLayout seleccionarPlaylist;
         public MiniActivity(@NonNull View itemView){
             super(itemView);
-            titulo = itemView.findViewById(R.id.TituloTabla);
-            seleccionar = itemView.findViewById(R.id.SeleccionarTabla);
+            portada = itemView.findViewById(R.id.playlist_image);
+            titulo = itemView.findViewById(R.id.titulo_play);
+            fecha = itemView.findViewById(R.id.fecha);
+            seleccionarPlaylist = itemView.findViewById(R.id.seleccionarPlaylist);
         }
     }
 }

@@ -1,9 +1,11 @@
 package com.example.mymusic;
 
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -18,7 +20,7 @@ import androidx.core.view.WindowInsetsCompat;
 import java.io.IOException;
 
 public class VerInfoCancion extends AppCompatActivity {
-    ImageView imagenCancion, play_pause, next, before;
+    ImageView imagenCancion, play_pause, next, before, regresar;
     TextView nombreCancion, nombreArtista, tiempoAct, tiempoTotal;
     SeekBar seekBar;
     private MediaPlayer mediaPlayer;
@@ -45,6 +47,7 @@ public class VerInfoCancion extends AppCompatActivity {
         tiempoAct = findViewById(R.id.tiempo_llevado);
         tiempoTotal = findViewById(R.id.tiempo_restante);
         seekBar = findViewById(R.id.progress_song);
+        regresar = findViewById(R.id.regresar);
         play_pause.setImageResource(android.R.drawable.ic_media_pause);
         colocarDatosArtista();
         reproducirMusica();
@@ -70,6 +73,14 @@ public class VerInfoCancion extends AppCompatActivity {
                 if (mediaPlayer != null && isPlaying) {
                     handler.post(actualizadorSeekBar);
                 }
+            }
+        });
+
+        regresar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent regresar = new Intent(VerInfoCancion.this, VerCancion.class);
+                startActivity(regresar);
             }
         });
     }

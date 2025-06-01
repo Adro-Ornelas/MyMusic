@@ -68,7 +68,8 @@ public class VerCancion extends AppCompatActivity {
     private void nombrarCanciones() {
         // Busca las canciones en el servidor y llena el arrayList "listaCanciones" de los elementos obtenidos;
 
-        String url = "https://b724-2806-2f0-56c0-fe66-f42e-6d86-b37a-d551.ngrok-free.app/Frecuency/nombreCanciones.php";
+        String baseUrl = getResources().getString(R.string.base_url);
+        String url = baseUrl + "nombreCanciones.php";
 
         // Recibe un arreglo de objetos json
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,
