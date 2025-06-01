@@ -16,6 +16,7 @@
         android:layout_marginBottom="5dp"
         android:layout_gravity="center">
         <LinearLayout
+            android:id="@+id/seleccionarCancion"
             android:layout_width="350dp"
             android:layout_height="match_parent"
             android:orientation="horizontal"

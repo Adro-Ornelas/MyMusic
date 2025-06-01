@@ -58,4 +58,6 @@
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
     <string name="album_image">Imagen del álbum</string>
+    <string name="skip">skip</string>
+    <string name="play">play</string>
 </resources>

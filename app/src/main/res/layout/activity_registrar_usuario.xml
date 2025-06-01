@@ -57,7 +57,7 @@
             android:paddingStart="15dp"
             android:paddingEnd="15dp"
             android:layout_marginBottom="10dp"
-            android:autofillHints="emailAddress"
+            android:autofillHints=""
             android:inputType="textEmailAddress"/>
         <EditText
             android:id="@+id/apellidoM"
@@ -71,7 +71,7 @@
             android:paddingStart="15dp"
             android:paddingEnd="15dp"
             android:layout_marginBottom="10dp"
-            android:autofillHints="emailAddress"
+            android:autofillHints=""
             android:inputType="textEmailAddress"/>
         <EditText
             android:id="@+id/apellidoP"
@@ -85,7 +85,7 @@
             android:paddingStart="15dp"
             android:paddingEnd="15dp"
             android:layout_marginBottom="10dp"
-            android:autofillHints="emailAddress"
+            android:autofillHints=""
             android:inputType="textEmailAddress"/>
         <EditText
             android:id="@+id/email"
