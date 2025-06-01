@@ -1,10 +1,13 @@
 package com.example.mymusic;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,11 +15,12 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.io.IOException;
+
 public class VerInfoCancion extends AppCompatActivity {
     ImageView imagenCancion, play_pause, next, before;
     TextView nombreCancion, nombreArtista, tiempoAct, tiempoTotal;
     SeekBar seekBar;
-
     private Handler handler;
     private Runnable actualizador;
     private boolean reproduciendo = true;
@@ -44,8 +48,8 @@ public class VerInfoCancion extends AppCompatActivity {
         tiempoTotal = findViewById(R.id.tiempo_restante);
         seekBar = findViewById(R.id.progress_song);
         play_pause.setImageResource(android.R.drawable.ic_media_pause);
-
         colocarDatosArtista();
+        reproducirMusica();
 
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -71,7 +75,23 @@ public class VerInfoCancion extends AppCompatActivity {
             }
         });
     }
-
+    private void reproducirMusica() {
+        String urlCancion = "https://b724-2806-2f0-56c0-fe66-f42e-6d86-b37a-d551.ngrok-free.app/Frecuency/" + getIntent().getStringExtra("cancion");
+        //Toast.makeText(this, "Url:"+urlCancion, Toast.LENGTH_LONG).show();
+        MediaPlayer mediaPlayer = new MediaPlayer();
+        try {
+            mediaPlayer.setDataSource(urlCancion);
+            mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                @Override
+                public void onPrepared(MediaPlayer mp) {
+                    mp.start();
+                }
+            });
+            mediaPlayer.prepareAsync();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
     private void colocarDatosArtista() {
         nombreCancion.setText(getIntent().getStringExtra("titulo"));
         nombreArtista.setText(getIntent().getStringExtra("artista"));

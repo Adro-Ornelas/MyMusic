@@ -87,6 +87,7 @@ public class VerCancion extends AppCompatActivity {
                                 newCancion.setArtista(objCancion.getString("artista"));
                                 newCancion.setDuracion(objCancion.getString("duracion"));
                                 newCancion.setFecha(objCancion.getString("fecha"));
+                                newCancion.setMusica(objCancion.getString("audio"));
 
                                 Info.listaCanciones.add(newCancion);
                             }

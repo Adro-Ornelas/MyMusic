@@ -8,6 +8,7 @@ public class Cancion {
     String duracion;
     String fecha;
     String artista;
+    String musica;
 
 
     public String getArtista() {
@@ -66,5 +67,11 @@ public class Cancion {
 
     public void setFecha(String fecha) {
         this.fecha = fecha;
+    }
+    public String getMusica() {
+        return musica;
+    }
+    public void setMusica(String musica) {
+        this.musica = musica;
     }
 }
