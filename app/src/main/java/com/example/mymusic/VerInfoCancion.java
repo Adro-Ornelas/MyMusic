@@ -86,7 +86,8 @@ public class VerInfoCancion extends AppCompatActivity {
     }
     private void reproducirMusica() {
         if (mediaPlayer == null) {
-            String urlCancion = "https://b724-2806-2f0-56c0-fe66-f42e-6d86-b37a-d551.ngrok-free.app/Frecuency/" + getIntent().getStringExtra("cancion");
+            String baseUrl = getResources().getString(R.string.base_url);
+            String urlCancion = baseUrl + getIntent().getStringExtra("cancion");
             mediaPlayer = new MediaPlayer();
             try {
                 mediaPlayer.setDataSource(urlCancion);
