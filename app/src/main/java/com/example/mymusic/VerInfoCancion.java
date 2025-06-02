@@ -17,7 +17,12 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.bumptech.glide.Glide;
+
 import java.io.IOException;
+
+import Global.Info;
+import POJO.Album;
 
 public class VerInfoCancion extends AppCompatActivity {
     ImageView imagenCancion, play_pause, next, before, regresar;
@@ -145,6 +150,24 @@ public class VerInfoCancion extends AppCompatActivity {
         nombreCancion.setText(getIntent().getStringExtra("titulo"));
         nombreArtista.setText(getIntent().getStringExtra("artista"));
         tiempoTotal.setText(getIntent().getStringExtra("tiempo"));
+        int idAlbum = getIntent().getIntExtra("portada", 0);
+        // Buscar el álbum correspondiente
+        Album album = null;
+        for (Album a : Info.listaAlbums) {
+            if (a.getID_album() == idAlbum) {
+                album = a;
+                break;
+            }
+        }
+        if(album != null){
+            String baseUrl = getResources().getString(R.string.base_url);
+            String imageUrl = baseUrl + album.getPortadaAlbum();
+            Glide.with(this)
+                    .load(imageUrl)
+                    .placeholder(R.drawable.frequency_icon_png) // una imagen por defecto
+                    .error(R.drawable.frequency_icon_png) // si falla
+                    .into(imagenCancion);
+        }
     }
     private String formatearTiempo(long millis) {
         int segundos = (int) (millis / 1000) % 60;

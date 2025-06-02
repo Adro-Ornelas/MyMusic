@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -31,6 +33,7 @@ import org.json.JSONException;
 
 import Adaptadores.adaptadorTablaVista;
 import Global.Info;
+import POJO.Album;
 import POJO.Playlist;
 import POJO.nombreTabla;
 
@@ -38,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
     SharedPreferences archivo;
     RecyclerView recyclerView;
+    Button playlist, albums, artistas;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +59,24 @@ public class MainActivity extends AppCompatActivity {
         // RecyclerView Para mostrar tablas
         recyclerView = findViewById(R.id.recyclerview);
         nombrarPlaylist();
+        playlist = findViewById(R.id.btn_playlist);
+        albums = findViewById(R.id.btn_albums);
+        artistas = findViewById(R.id.btn_artistas);
+
+        playlist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                nombrarPlaylist();
+            }
+        });
+        albums.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
+
 
     private void nombrarTablas() {
         RequestQueue queue = Volley.newRequestQueue(this);

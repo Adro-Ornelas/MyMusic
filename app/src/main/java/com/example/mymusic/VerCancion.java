@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
@@ -36,12 +37,15 @@ import org.w3c.dom.Text;
 import Adaptadores.adaptadorTablaVista;
 import Adaptadores.adaptadorVerCancion;
 import Global.Info;
+import POJO.Album;
 import POJO.Cancion;
 
 public class VerCancion extends AppCompatActivity {
     Toolbar toolbar;
     RecyclerView recyclerView;
     SharedPreferences archivo;
+    private boolean cancionesCargadas = false;
+    private boolean albumsCargados = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,7 +66,7 @@ public class VerCancion extends AppCompatActivity {
         archivo = this.getSharedPreferences("sesion", Context.MODE_PRIVATE);
 
         nombrarCanciones();     // Llena el arrayList de la información de cada cancion;
-
+        nombrarAlbums();
     }
 
     private void nombrarCanciones() {
@@ -77,10 +81,11 @@ public class VerCancion extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONArray response) {
                         try {
+                            Info.listaCanciones.clear();
                             for(int i = 0; i < response.length(); ++i){
+
                                 JSONObject objCancion = response.getJSONObject(i);
                                 Cancion newCancion = new Cancion();
-
                                 newCancion.setId_cancion(Integer.parseInt(objCancion.getString("id_cancion")));
                                 newCancion.setId_album(Integer.parseInt(objCancion.getString("id_album")));
                                 newCancion.setId_genero(Integer.parseInt(objCancion.getString("id_genero")));
@@ -92,6 +97,8 @@ public class VerCancion extends AppCompatActivity {
 
                                 Info.listaCanciones.add(newCancion);
                             }
+                            cancionesCargadas = true;
+                            verificarYCrearAdaptador();
                         } catch (JSONException e){
                             e.printStackTrace();
                         }
@@ -113,6 +120,48 @@ public class VerCancion extends AppCompatActivity {
         RequestQueue queue = Volley.newRequestQueue(this);
         queue.add(request);
 
+    }
+
+    private void nombrarAlbums() {
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String baseUrl = getResources().getString(R.string.base_url);
+        String url = baseUrl + "verAlbum.php";
+
+        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        try {
+                            Info.listaAlbums.clear();
+                            for (int i = 0; i < response.length(); i++) {
+                                JSONArray item = response.getJSONArray(i);
+                                Album album = new Album();
+                                album.setID_album(item.getInt(0));           // ID_playlist
+                                album.setID_discografia(item.getInt(1));  // ID_discografia
+                                album.setTituloAlbum(item.getString(2));   // Titulo Album
+                                album.setFechaAlbum(item.getString(3));   // Fecha Album
+                                album.setPortadaAlbum(item.getString(4)); // Ubicacion portada
+                                Info.listaAlbums.add(album);
+                            }
+                            albumsCargados = true;
+                            verificarYCrearAdaptador();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(VerCancion.this, "Error al leer la playlist", Toast.LENGTH_SHORT).show();
+                        }
+                        // Establece ViewHolder del recycler view
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("Volley", error.toString());
+                        Toast.makeText(VerCancion.this, "Error en la conexión: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+        queue.add(request);
     }
     // Inflar options menu
     @Override
@@ -173,4 +222,15 @@ public class VerCancion extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+    private void verificarYCrearAdaptador() {
+        if (cancionesCargadas && albumsCargados) {
+            adaptadorVerCancion adapter = new adaptadorVerCancion();
+            adapter.context = VerCancion.this;
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,
+                    LinearLayoutManager.VERTICAL, false);
+            recyclerView.setLayoutManager(linearLayoutManager);
+            recyclerView.setAdapter(adapter);
+        }
+    }
+
 }

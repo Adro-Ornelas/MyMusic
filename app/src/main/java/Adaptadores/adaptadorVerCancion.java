@@ -12,10 +12,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.mymusic.R;
 import com.example.mymusic.VerInfoCancion;
 
 import Global.Info;
+import POJO.Album;
+import POJO.Cancion;
 
 public class adaptadorVerCancion extends RecyclerView.Adapter<adaptadorVerCancion.MiniActivity> {
     public Context context;
@@ -39,11 +42,14 @@ public class adaptadorVerCancion extends RecyclerView.Adapter<adaptadorVerCancio
         holder.clicCancion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Cancion cancion = Info.listaCanciones.get(position);
+                int idAlbum = cancion.getId_album();
                 Intent verCancion = new Intent(context, VerInfoCancion.class);
                 verCancion.putExtra("titulo", Info.listaCanciones.get(pos).getTitulo());
                 verCancion.putExtra("artista", Info.listaCanciones.get(pos).getArtista());
                 verCancion.putExtra("tiempo", Info.listaCanciones.get(pos).getDuracion());
                 verCancion.putExtra("cancion", Info.listaCanciones.get(pos).getMusica());
+                verCancion.putExtra("portada", idAlbum);
                 context.startActivity(verCancion);
             }
         });

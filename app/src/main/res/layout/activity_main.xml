@@ -25,6 +25,7 @@
             android:gravity="center"
             android:layout_marginBottom="20dp">
             <Button
+                android:id="@+id/btn_playlist"
                 android:layout_width="96dp"
                 android:layout_height="48dp"
                 android:text="Playlists"
@@ -36,6 +37,7 @@
                 android:textColor="@color/white"
                 android:layout_marginEnd="20dp"/>
             <Button
+                android:id="@+id/btn_albums"
                 android:layout_width="96dp"
                 android:layout_height="48dp"
                 android:text="Álbumes"
@@ -47,6 +49,7 @@
                 android:backgroundTint="@color/blue"
                 android:layout_marginEnd="20dp"/>
             <Button
+                android:id="@+id/btn_artistas"
                 android:layout_width="96dp"
                 android:layout_height="48dp"
                 android:text="Artistas"
