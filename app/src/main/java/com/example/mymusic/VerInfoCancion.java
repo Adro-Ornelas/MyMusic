@@ -2,6 +2,7 @@ package com.example.mymusic;
 
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.opengl.Visibility;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -25,8 +26,8 @@ import Global.Info;
 import POJO.Album;
 
 public class VerInfoCancion extends AppCompatActivity {
-    ImageView imagenCancion, play_pause, next, before, regresar;
-    TextView nombreCancion, nombreArtista, tiempoAct, tiempoTotal;
+    ImageView imagenCancion, play_pause, next, before, regresar, iv_letra;
+    TextView nombreCancion, nombreArtista, tiempoAct, tiempoTotal, txtv_letra;
     SeekBar seekBar;
     private MediaPlayer mediaPlayer;
     private boolean isPlaying = false;
@@ -43,6 +44,8 @@ public class VerInfoCancion extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        // Asigna id a los componentes
         imagenCancion = findViewById(R.id.album_image);
         play_pause = findViewById(R.id.play_pause);
         next = findViewById(R.id.avanzar_lista);
@@ -54,6 +57,9 @@ public class VerInfoCancion extends AppCompatActivity {
         seekBar = findViewById(R.id.progress_song);
         regresar = findViewById(R.id.regresar);
         play_pause.setImageResource(android.R.drawable.ic_media_pause);
+        iv_letra = findViewById(R.id.iv_letra);
+        txtv_letra = findViewById(R.id.txtv_letra);
+
         colocarDatosArtista();
         reproducirMusica();
 
@@ -86,9 +92,35 @@ public class VerInfoCancion extends AppCompatActivity {
             public void onClick(View v) {
                 Intent regresar = new Intent(VerInfoCancion.this, VerCancion.class);
                 startActivity(regresar);
+                finish();   // Finaliza activity para no seguir escuchando la canción
+            }
+        });
+
+        // Función para cambiar el ImageView de foto del álbum, por la letra
+        iv_letra.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                event_mostrarLetra();
             }
         });
     }
+
+    private void event_mostrarLetra() {
+        // Al seleccionar el ImageView se muestra o se oculta la letra por la imagen del álbum
+        // Si es visible, cambia aspecto de imageView a fondo negro
+        if(imagenCancion.getVisibility() == View.VISIBLE) {
+            iv_letra.setBackgroundColor(getResources().getColor(R.color.black, getTheme()));
+            imagenCancion.setVisibility(View.GONE); // Desaparece imagen album
+            txtv_letra.setVisibility(View.VISIBLE); // Aparece textView de la letra
+
+        }else {
+            // Si ya estaba ido (GONE), lo devuelve y retorna aspecto de imageView (sin fondo)
+            iv_letra.setBackgroundColor(0);
+            imagenCancion.setVisibility(View.VISIBLE);
+            txtv_letra.setVisibility(View.GONE); // Desarece textView de la letra
+        }
+    }
+
     private void reproducirMusica() {
         if (mediaPlayer == null) {
             String baseUrl = getResources().getString(R.string.base_url);
@@ -150,6 +182,8 @@ public class VerInfoCancion extends AppCompatActivity {
         nombreCancion.setText(getIntent().getStringExtra("titulo"));
         nombreArtista.setText(getIntent().getStringExtra("artista"));
         tiempoTotal.setText(getIntent().getStringExtra("tiempo"));
+        // TDP LETRA DE CANCION
+        // txtv_letra.setText(Info.listaCanciones.get(getIntent().getIntExtra("indx_cancion", 0)).);
         int idAlbum = getIntent().getIntExtra("portada", 0);
         // Buscar el álbum correspondiente
         Album album = null;
