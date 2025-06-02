@@ -44,6 +44,8 @@ public class adaptadorVerCancion extends RecyclerView.Adapter<adaptadorVerCancio
                 verCancion.putExtra("artista", Info.listaCanciones.get(pos).getArtista());
                 verCancion.putExtra("tiempo", Info.listaCanciones.get(pos).getDuracion());
                 verCancion.putExtra("cancion", Info.listaCanciones.get(pos).getMusica());
+                verCancion.putExtra("indx_cancion", pos);   // Manda index de array
+
                 context.startActivity(verCancion);
             }
         });
