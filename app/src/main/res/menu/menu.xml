@@ -5,6 +5,12 @@
         android:id="@+id/opc_principal"
         android:title="Principal"/>
     <item
+        android:id="@+id/perfil"
+        android:title="Perfil"
+        android:icon="@drawable/baseline_account_circle_24_white"
+        app:showAsAction="always"
+        />
+    <item
         android:id="@+id/opc_logout"
         android:title="Cerrar sesión"
         android:icon="@drawable/baseline_logout_24"
@@ -21,7 +27,6 @@
         android:id="@+id/opc_eliminar"
         android:title="Eliminar"
         android:icon="@drawable/baseline_delete_24"
-        app:showAsAction="always"
         />
     <item
         android:id="@+id/opc_creadores"

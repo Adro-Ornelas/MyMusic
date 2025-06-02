@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -25,17 +24,13 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import Adaptadores.adaptadorTablaVista;
-import Adaptadores.adaptadorVerCancion;
 import Global.Info;
-import POJO.Cancion;
 import POJO.Playlist;
 import POJO.nombreTabla;
 
@@ -194,6 +189,9 @@ public class MainActivity extends AppCompatActivity {
             Intent aCont = new Intent(this, Contactos.class);
             startActivity(aCont);
 
+        } else if (item.getItemId() == R.id.perfil){
+            Intent perfil = new Intent(this, Perfil.class);
+            startActivity(perfil);
         }
         return super.onOptionsItemSelected(item);
     }

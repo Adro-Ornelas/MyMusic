@@ -26,7 +26,7 @@
             android:layout_marginBottom="20dp">
             <Button
                 android:layout_width="96dp"
-                android:layout_height="45dp"
+                android:layout_height="48dp"
                 android:text="Playlists"
                 android:fontFamily="@font/roboto_condensed_regular"
                 android:textSize="14sp"
@@ -37,7 +37,7 @@
                 android:layout_marginEnd="20dp"/>
             <Button
                 android:layout_width="96dp"
-                android:layout_height="45dp"
+                android:layout_height="48dp"
                 android:text="Álbumes"
                 android:fontFamily="@font/roboto_condensed_regular"
                 android:textSize="14sp"
@@ -48,7 +48,7 @@
                 android:layout_marginEnd="20dp"/>
             <Button
                 android:layout_width="96dp"
-                android:layout_height="45dp"
+                android:layout_height="48dp"
                 android:text="Artistas"
                 android:fontFamily="@font/roboto_condensed_regular"
                 android:textSize="14sp"

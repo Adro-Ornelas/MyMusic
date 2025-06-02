@@ -86,6 +86,9 @@ public class Contactos extends AppCompatActivity {
 
             Toast.makeText(this, "Ya se encuentra aquí.", Toast.LENGTH_SHORT).show();
 
+        } else if (item.getItemId() == R.id.perfil){
+            Intent perfil = new Intent(this, Perfil.class);
+            startActivity(perfil);
         }
         return super.onOptionsItemSelected(item);
     }
