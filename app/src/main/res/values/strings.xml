@@ -1,5 +1,5 @@
 <resources>
-    <string name="base_url">https://ed3a-2806-2f0-56c0-fe66-7d23-c6c8-7233-5a55.ngrok-free.app/Frecuency/</string>
+    <string name="base_url">https://1052-2806-2f0-56c0-fe66-d889-129b-e14b-7b66.ngrok-free.app/Frecuency/</string>
     <string name="app_name">Frequency</string>
     <string name="user_txt">Correo electronico</string>
     <string name="password_txt">Contraseña</string>
